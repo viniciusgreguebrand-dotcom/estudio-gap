@@ -1,0 +1,36 @@
+{% include 'partials/head.html' %}
+<body class="page-inner page-inner--dark-top">
+
+{% include 'partials/nav.html' %}
+
+  <main class="page">
+
+    <section class="split split--hero">
+      <div class="split__content">
+        <h1 class="split__title">{{ p.hero.title_lines|join('<br>') }}</h1>
+        <ul class="split__facts">
+          <li class="split__facts-lead">{{ p.hero.facts_lead }} <strong>{{ p.hero.facts_name }}</strong></li>
+          {% for f in p.hero.facts %}<li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <figure class="split__media reveal-x reveal-x--right">
+        <span class="reveal-x__box"><video src="assets/vinicius-gregue.mp4" poster="assets/vinicius-gregue.jpg" autoplay muted loop playsinline aria-label="Vinicius Gregue, estrategista de marcas"></video></span>
+      </figure>
+    </section>
+
+    <section class="band band--white">
+      <div class="container about-body">
+        <p class="about-body__pull">{{ p.texto.pull }}</p>
+        <div class="about-body__text">
+          {% for t in p.texto.paragraphs %}<p>{{ t }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+{% include 'partials/cta.html' %}
+
+  </main>
+
+{% include 'partials/footer.html' %}

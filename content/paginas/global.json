@@ -1,0 +1,18 @@
+{
+ "nav": {
+  "inicio": "Início",
+  "projetos": "Projetos",
+  "sobre": "Sobre",
+  "metodo": "Método",
+  "cta": "Fale conosco"
+ },
+ "footer": {
+  "tagline": "Branding estratégico para advogados e escritórios consolidados.",
+  "copyright": "© 2026 Estúdio GAP"
+ },
+ "cta": {
+  "title": "Sua marca está à altura do que você construiu?",
+  "sub": "Vamos conversar sobre o momento do seu escritório.",
+  "button": "Fale conosco"
+ }
+}

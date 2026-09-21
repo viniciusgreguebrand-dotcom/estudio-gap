@@ -1,0 +1,334 @@
+local_backend: true
+backend:
+  name: github
+  repo: viniciusgreguebrand-dotcom/estudio-gap
+  branch: main
+  base_url: https://estudiogap-auth.SEU-SUBDOMINIO.workers.dev   # proxy de login (Cloudflare Worker) — ajustado no passo de login
+  commit_messages:
+    create: "Painel: cria {{collection}} “{{slug}}”"
+    update: "Painel: atualiza {{collection}} “{{slug}}”"
+    delete: "Painel: remove {{collection}} “{{slug}}”"
+    uploadMedia: "Painel: envia {{path}}"
+    deleteMedia: "Painel: remove {{path}}"
+
+locale: pt
+site_url: https://estudiogap.com.br
+display_url: https://estudiogap.com.br
+logo_url: https://estudiogap.com.br/assets/gap-logo.png
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  # ---------------- PROJETOS (estilo Behance) ----------------
+  - name: projetos
+    label: Projetos
+    label_singular: Projeto
+    folder: content/projetos
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} · {{services}} · {{year}}"
+    sortable_fields: [order, title, year]
+    fields:
+      - { label: "Título", name: title, widget: string, hint: "Nome do projeto, como aparece na galeria e na home." }
+      - { label: "Slug (endereço)", name: slug, widget: string, hint: "Só letras minúsculas e hífens. Vira /projetos/<slug>.html", pattern: ["^[a-z0-9-]+$", "Use apenas letras minúsculas, números e hífens"] }
+      - { label: "Publicado", name: published, widget: boolean, default: true, hint: "Desligue para esconder o projeto do site sem apagar." }
+      - { label: "Ordem", name: order, widget: number, value_type: int, default: 99, hint: "1 aparece primeiro na home e na galeria." }
+      - { label: "Capa", name: cover, widget: image, hint: "Imagem principal. Pode enviar um arquivo ou colar um link (Behance)." , media_library: { config: { multiple: false } } }
+      - { label: "Fotos da capa (slideshow)", name: slides, widget: list, field: { label: Imagem, name: image, widget: image }, hint: "Até 6 imagens únicas (sem composições duplas). Trocam a cada 1s na home e na galeria. A primeira deve ser a capa.", max: 6 }
+      - { label: "Serviços", name: services, widget: string, hint: "Ex.: Advocacia Tributária Consultiva" }
+      - { label: "Ano", name: year, widget: string, required: false }
+      - { label: "Local", name: local, widget: string, required: false, hint: "Ex.: Brasília - DF" }
+      - { label: "Créditos", name: credits, widget: string, default: "Vinicius Gregue", required: false }
+      - { label: "Resumo", name: summary, widget: text, required: false, hint: "Aparece na home (painel do feed) e na abertura da página do projeto." }
+      - label: "Conteúdo do projeto"
+        name: blocks
+        widget: list
+        hint: "Arraste para reordenar. Imagem, vídeo (Vimeo), título ou texto. Em textos bilíngues, escreva PT-BR e EN em parágrafos iniciados por 'PT-BR' e 'EN' para virarem duas colunas."
+        types:
+          - label: Imagem
+            name: image
+            widget: object
+            summary: "🖼 {{fields.alt}}"
+            fields:
+              - { label: Imagem, name: src, widget: image }
+              - { label: "Texto alternativo", name: alt, widget: string, required: false }
+          - label: "Vídeo (Vimeo)"
+            name: video
+            widget: object
+            summary: "▶ {{fields.src}}"
+            fields:
+              - { label: "Link do Vimeo", name: src, widget: string, hint: "Cole o link do vídeo (ex.: https://vimeo.com/123456). Toca em loop, sem som." }
+          - label: Título
+            name: heading
+            widget: object
+            summary: "T {{fields.text}}"
+            fields:
+              - { label: Título, name: text, widget: string }
+          - label: Texto
+            name: text
+            widget: object
+            summary: "¶ {{fields.text | truncate(60)}}"
+            fields:
+              - { label: Texto, name: text, widget: text }
+
+  # ---------------- PÁGINAS (copy por faixa) ----------------
+  - name: paginas
+    label: Páginas
+    files:
+      - name: global
+        label: "Geral (menu, rodapé, CTA final)"
+        file: content/paginas/global.json
+        fields:
+          - label: Menu
+            name: nav
+            widget: object
+            fields:
+              - { label: Início, name: inicio, widget: string }
+              - { label: Projetos, name: projetos, widget: string }
+              - { label: Sobre, name: sobre, widget: string }
+              - { label: Método, name: metodo, widget: string }
+              - { label: "Botão", name: cta, widget: string }
+          - label: Rodapé
+            name: footer
+            widget: object
+            fields:
+              - { label: Frase, name: tagline, widget: string }
+              - { label: Copyright, name: copyright, widget: string }
+          - label: "CTA final (todas as páginas)"
+            name: cta
+            widget: object
+            fields:
+              - { label: Título, name: title, widget: string, hint: "Escrito com efeito de máquina de escrever." }
+              - { label: Subtítulo, name: sub, widget: string }
+              - { label: Botão, name: button, widget: string }
+
+      - name: home
+        label: Home
+        file: content/paginas/home.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título da aba", name: title, widget: string }
+              - { label: "Descrição (Google)", name: description, widget: text }
+          - label: "1. Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Headline, name: headline, widget: text }
+              - { label: "Botão 1", name: btn1, widget: string }
+              - { label: "Botão 2", name: btn2, widget: string }
+          - label: "2. Posicionamento"
+            name: intro
+            widget: object
+            fields:
+              - { label: "Linhas do texto", name: lines, widget: list, hint: "Cada item é uma linha (quebra fixa no desktop)." }
+          - label: "3. Cases em destaque"
+            name: cases
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: "Link 'ver todos'", name: all, widget: string }
+          - label: "4. Sobre"
+            name: sobre
+            widget: object
+            fields:
+              - { label: "Título (linhas)", name: title_lines, widget: list }
+              - { label: "Texto do meio", name: mid, widget: text }
+              - { label: "'Por'", name: facts_lead, widget: string }
+              - { label: Nome, name: facts_name, widget: string }
+              - { label: "Linhas da ficha", name: facts, widget: list }
+              - { label: Botão, name: button, widget: string }
+          - label: "5. Manifesto"
+            name: manifesto
+            widget: object
+            fields:
+              - { label: "Título (linhas)", name: lines, widget: list, hint: "Escrito com efeito de máquina de escrever." }
+              - { label: Subtítulo, name: sub, widget: text }
+          - label: "6. Método"
+            name: metodo
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Título, name: title, widget: text }
+              - label: Etapas
+                name: steps
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Nome, name: name, widget: string }
+                  - { label: "Pergunta central", name: question, widget: string }
+                  - { label: Descrição, name: desc, widget: text }
+                  - { label: Resultado, name: result, widget: text }
+                  - { label: Tags, name: tags, widget: list }
+          - label: "7. Depoimentos"
+            name: depoimentos
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - label: Depoimentos
+                name: items
+                widget: list
+                summary: "{{fields.name}} · {{fields.org}}"
+                fields:
+                  - { label: Depoimento, name: quote, widget: text }
+                  - { label: Nome, name: name, widget: string }
+                  - { label: Escritório, name: org, widget: string }
+
+      - name: sobre
+        label: Sobre
+        file: content/paginas/sobre.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título da aba", name: title, widget: string }
+              - { label: "Descrição (Google)", name: description, widget: text }
+          - label: "1. Abertura"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Título (linhas)", name: title_lines, widget: list }
+              - { label: "'Por'", name: facts_lead, widget: string }
+              - { label: Nome, name: facts_name, widget: string }
+              - { label: "Linhas da ficha", name: facts, widget: list }
+          - label: "2. Texto"
+            name: texto
+            widget: object
+            fields:
+              - { label: "Frase de destaque", name: pull, widget: text }
+              - { label: Parágrafos, name: paragraphs, widget: list, field: { label: Parágrafo, name: p, widget: text } }
+
+      - name: metodo
+        label: Método
+        file: content/paginas/metodo.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título da aba", name: title, widget: string }
+              - { label: "Descrição (Google)", name: description, widget: text }
+          - label: "1. Abertura"
+            name: hero
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Título, name: title, widget: text }
+              - { label: Lead, name: lead, widget: text }
+          - label: "2. Pilares"
+            name: pilares
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Slug (âncora)", name: slug, widget: string }
+              - { label: Nome, name: name, widget: string }
+              - { label: "Pergunta central", name: question, widget: string }
+              - { label: Parágrafos, name: paragraphs, widget: list, field: { label: Parágrafo, name: p, widget: text } }
+              - { label: Tags, name: tags, widget: list }
+          - label: "3. Processo"
+            name: processo
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Título, name: title, widget: string }
+              - label: Passos
+                name: steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Título, name: title, widget: string }
+                  - { label: Texto, name: text, widget: text }
+          - label: "4. Linha do tempo"
+            name: timeline
+            widget: object
+            fields:
+              - { label: Título, name: title, widget: string }
+              - { label: Grupos, name: groups, widget: list, hint: "Dois grupos de 4 marcos cada." }
+              - label: Marcos
+                name: nodes
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Rótulo, name: label, widget: string }
+                  - { label: "Entrega (abaixo)", name: deliverable, widget: text, required: false }
+              - label: Fases
+                name: phases
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Nome, name: label, widget: string }
+                  - { label: "Quantos marcos abrange", name: span, widget: number, value_type: int }
+              - label: Ficha
+                name: meta
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Título, name: title, widget: string }
+                  - { label: Texto, name: text, widget: string }
+          - label: "5. O resultado"
+            name: leva
+            widget: object
+            fields:
+              - { label: Título, name: title, widget: text, hint: "Escrito com efeito de máquina de escrever." }
+              - { label: Texto, name: text, widget: text }
+          - label: "6. Perguntas frequentes"
+            name: faq
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Título, name: title, widget: string }
+              - label: Perguntas
+                name: items
+                widget: list
+                summary: "{{fields.q}}"
+                fields:
+                  - { label: Pergunta, name: q, widget: string }
+                  - { label: Resposta, name: a, widget: text }
+
+      - name: contato
+        label: Contato
+        file: content/paginas/contato.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título da aba", name: title, widget: string }
+              - { label: "Descrição (Google)", name: description, widget: text }
+          - { label: Título, name: title, widget: string }
+          - { label: Subtítulo, name: sub, widget: text }
+          - label: Formulário
+            name: form
+            widget: object
+            fields:
+              - { label: "Opções de momento", name: momentos, widget: list }
+              - { label: "Opções de serviço", name: servicos, widget: list }
+              - { label: "Faixas de investimento", name: investimentos, widget: list }
+              - { label: "Texto do botão", name: submit, widget: string }
+              - { label: "Mensagem de sucesso", name: success, widget: string }
+
+      - name: projetos_pagina
+        label: "Projetos (galeria)"
+        file: content/paginas/projetos.json
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Título da aba", name: title, widget: string }
+              - { label: "Descrição (Google)", name: description, widget: text }
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Título, name: title, widget: string }

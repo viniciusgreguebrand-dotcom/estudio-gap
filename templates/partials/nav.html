@@ -1,0 +1,12 @@
+  <header class="nav{% if not home %} is-scrolled{% endif %}">
+    <a href="{{ rel }}index.html" class="nav__brand"><img src="{{ rel }}assets/gap-logo.png" alt="GAP" class="nav__logo" /></a>
+    <div class="nav__right">
+    <nav class="nav__links">
+      <a href="{{ rel }}index.html">{{ g.nav.inicio }}</a>
+      <a href="{{ rel }}projetos.html"{% if active == 'projetos' %} class="is-active"{% endif %}>{{ g.nav.projetos }}</a>
+      <a href="{{ rel }}sobre.html"{% if active == 'sobre' %} class="is-active"{% endif %}>{{ g.nav.sobre }}</a>
+      <a href="{{ rel }}metodo.html"{% if active == 'metodo' %} class="is-active"{% endif %}>{{ g.nav.metodo }}</a>
+    </nav>
+    <a href="{{ rel }}contato.html" class="btn btn--dark">{{ g.nav.cta }}</a>
+    </div>
+  </header>

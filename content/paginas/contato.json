@@ -1,0 +1,32 @@
+{
+ "seo": {
+  "title": "Fale conosco · Estúdio GAP",
+  "description": "Conte o momento da sua marca e o que você quer construir. Branding estratégico para advogados e escritórios consolidados."
+ },
+ "title": "Um novo capítulo começa aqui.",
+ "sub": "Toda transformação começa com uma boa conversa. Conte o momento da sua marca e o que você quer construir.",
+ "form": {
+  "momentos": [
+   "Estou criando uma marca",
+   "Quero reposicionar minha marca",
+   "Meu negócio está crescendo",
+   "Quero conversar sobre outro desafio"
+  ],
+  "servicos": [
+   "Identidade visual",
+   "Estratégia de marca",
+   "Rebranding",
+   "Naming",
+   "Design de embalagens",
+   "Design digital",
+   "Ainda não sei"
+  ],
+  "investimentos": [
+   "de 2.000 a 5.000,00",
+   "de 5.000 a 10.000,00",
+   "+10.000,00"
+  ],
+  "submit": "Enviar projeto",
+  "success": "Mensagem enviada. Retornamos em breve."
+ }
+}

@@ -1,0 +1,15 @@
+{% from 'partials/typewriter.html' import tw %}
+    <section class="band band--white tw-block" id="contato">
+      <div class="container cta cta--center">
+        {{ tw('h2', 'h-xl', [g.cta.title], '0.5') }}
+        <p class="body tw-after">{{ g.cta.sub }}</p>
+        {% if inline_form %}
+        <button type="button" class="btn btn--dark btn--lg cta__toggle" aria-expanded="false" aria-controls="cta-form">{{ g.cta.button }}</button>
+        <div class="cta__form" id="cta-form" hidden>
+{% include 'partials/form.html' %}
+        </div>
+        {% else %}
+        <a href="{{ rel }}contato.html" class="btn btn--dark btn--lg">{{ g.cta.button }}</a>
+        {% endif %}
+      </div>
+    </section>

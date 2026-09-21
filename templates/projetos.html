@@ -1,0 +1,29 @@
+{% include 'partials/head.html' %}
+<body class="page-inner">
+
+{% include 'partials/nav.html' %}
+
+  <main class="page">
+    <section class="band band--white gallery">
+      <div class="container">
+        <p class="label">{{ p.eyebrow }}</p>
+        <h1 class="h-lg">{{ p.title }}</h1>
+        <div class="gallery__grid">
+          {% for pr in projects %}
+          <article class="gallery__item">
+            <a href="projetos/{{ pr.slug }}.html">
+              <span class="reveal-x gallery__cover">{% for s in pr.slides %}<img src="{{ s }}" alt="{{ pr.title if loop.first else '' }}" loading="{{ 'eager' if loop.first else 'lazy' }}" class="slide{% if loop.first %} is-on{% endif %}" />{% endfor %}</span>
+              <h2>{{ pr.title }}</h2>
+            </a>
+            <div class="gallery__meta">
+              <p>{{ pr.services }}</p>
+              <span>{{ [pr.local, pr.year]|select|join(' · ') }}</span>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% include 'partials/footer.html' %}

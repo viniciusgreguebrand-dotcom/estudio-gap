@@ -1,0 +1,18 @@
+{% include 'partials/head.html' %}
+<body class="page-inner">
+
+{% include 'partials/nav.html' %}
+
+  <main class="page">
+    <section class="band band--white contact">
+      <div class="container cta">
+        <h1 class="h-xl">{{ p.title }}</h1>
+        <p class="body">{{ p.sub }}</p>
+        <div class="cta__form cta__form--page">
+{% include 'partials/form.html' %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% include 'partials/footer.html' %}

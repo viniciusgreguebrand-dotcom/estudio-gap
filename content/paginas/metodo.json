@@ -1,0 +1,228 @@
+{
+ "seo": {
+  "title": "Método · Estúdio GAP",
+  "description": "O Método GAP: investigação, estratégia, posicionamento e expressão. Branding estratégico orientado pela realidade do negócio, para advogados e escritórios consolidados."
+ },
+ "hero": {
+  "eyebrow": "Método GAP™",
+  "title": "Estratégia antes\nda estética.",
+  "lead": "Uma marca forte precisa nascer de uma compreensão forte do negócio. Por isso o GAP não começa desenhando. Começa investigando."
+ },
+ "pilares": [
+  {
+   "slug": "investigacao",
+   "name": "Investigação",
+   "question": "O que realmente existe aqui que merece ser transformado em marca?",
+   "paragraphs": [
+    "Descobrir o que realmente existe dentro do negócio. Investigamos história, modelo de atuação, visão dos sócios, audiência, mercado, concorrência, diferenciais, percepção atual e oportunidades, por meio de entrevistas estratégicas, workshops, pesquisa interna e análises de negócio, audiência, mercado e concorrência.",
+    "É a etapa que evita construir uma marca bonita sobre um negócio que ninguém entendeu de verdade."
+   ],
+   "tags": [
+    "Entrevistas estratégicas",
+    "Workshops",
+    "Pesquisa interna",
+    "Análise de negócio, audiência, mercado e concorrência",
+    "Mapeamento de diferenciais",
+    "Análise da percepção atual"
+   ]
+  },
+  {
+   "slug": "estrategia",
+   "name": "Estratégia",
+   "question": "Que lugar essa marca deve ocupar na cabeça do mercado?",
+   "paragraphs": [
+    "Transformar investigação em decisões. Definimos a plataforma de marca, a proposta de valor, o território, a diferenciação e a narrativa, e o arquétipo quando faz sentido. Tudo consolidado em um relatório estratégico validado com os sócios antes de seguir adiante."
+   ],
+   "tags": [
+    "Relatório estratégico",
+    "Plataforma de marca",
+    "Proposta de valor",
+    "Território e diferenciação",
+    "Narrativa e direção estratégica"
+   ]
+  },
+  {
+   "slug": "posicionamento",
+   "name": "Posicionamento",
+   "question": "Como esse escritório precisa ser percebido?",
+   "paragraphs": [
+    "Transformar estratégia em percepção desejada. Definimos a palavra-chave da marca, a identidade verbal, as mensagens principais e o tom de voz, respeitando os limites da publicidade na advocacia. É aqui que a marca aprende a falar de si com clareza, sem parecer com todas as outras."
+   ],
+   "tags": [
+    "Palavra-chave",
+    "Identidade verbal",
+    "Mensagens principais",
+    "Tom de voz",
+    "Percepção desejada e direção de comunicação"
+   ]
+  },
+  {
+   "slug": "expressao",
+   "name": "Expressão",
+   "question": "Como a estratégia ganha forma?",
+   "paragraphs": [
+    "Só agora o design entra. Transformamos estratégia e posicionamento em linguagem visual: conceito, key visual, identidade, sistema gráfico, tipografia, cores, elementos e aplicações. Tudo documentado em um brand guide, com orientação para que a equipe utilize a marca com consistência depois da entrega."
+   ],
+   "tags": [
+    "Conceito visual e key visual",
+    "Identidade visual e sistema gráfico",
+    "Tipografia, cores e elementos",
+    "Aplicações",
+    "Brand guide"
+   ]
+  }
+ ],
+ "processo": {
+  "eyebrow": "Processo",
+  "title": "Oito passos, uma marca.",
+  "steps": [
+   {
+    "title": "Entrevistas estratégicas",
+    "text": "Conversas individuais com os sócios e decisores para entender história, visão e diferenciais."
+   },
+   {
+    "title": "Workshop de marca",
+    "text": "Sessões facilitadas por um estrategista para alinhar percepções e extrair o que ainda não está dito."
+   },
+   {
+    "title": "Pesquisa e análise",
+    "text": "Análise de negócio, audiência, mercado, concorrência e da percepção atual da marca."
+   },
+   {
+    "title": "Relatório estratégico",
+    "text": "Diagnóstico e direção documentados: o que existe, o que falta e para onde a marca deve ir."
+   },
+   {
+    "title": "Plataforma de marca",
+    "text": "Proposta de valor, território, diferenciação e narrativa: a síntese que orienta todas as decisões."
+   },
+   {
+    "title": "Identidade verbal",
+    "text": "Palavra-chave, mensagens principais e tom de voz. Como o escritório fala de si."
+   },
+   {
+    "title": "Key visual",
+    "text": "Conceito visual, símbolo, logotipo, sistema tipográfico e paleta: a estratégia ganhando forma."
+   },
+   {
+    "title": "Brand guide",
+    "text": "Estratégia, posicionamento e identidade reunidos em um guia para uso consistente da marca."
+   }
+  ]
+ },
+ "timeline": {
+  "title": "Linha do tempo Método GAP™",
+  "groups": [
+   "Estratégia de Marca",
+   "Identidade de Marca"
+  ],
+  "nodes": [
+   {
+    "label": "Entrevistas",
+    "deliverable": "Diagnóstico"
+   },
+   {
+    "label": "Workshop",
+    "deliverable": ""
+   },
+   {
+    "label": "Pesquisa",
+    "deliverable": "Direção estratégica & criativa"
+   },
+   {
+    "label": "Relatório",
+    "deliverable": ""
+   },
+   {
+    "label": "Plataforma",
+    "deliverable": "Posicionamento + verbal"
+   },
+   {
+    "label": "Key word",
+    "deliverable": ""
+   },
+   {
+    "label": "Key visual",
+    "deliverable": "Visual"
+   },
+   {
+    "label": "Guia de marca",
+    "deliverable": "Estratégia\nPosicionamento\nIdentidade verbal & visual"
+   }
+  ],
+  "phases": [
+   {
+    "label": "Coletando",
+    "span": 2
+   },
+   {
+    "label": "Explorando",
+    "span": 2
+   },
+   {
+    "label": "Criando",
+    "span": 3
+   },
+   {
+    "label": "Definindo",
+    "span": 1
+   }
+  ],
+  "meta": [
+   {
+    "title": "Investigação",
+    "text": "3–4 reuniões"
+   },
+   {
+    "title": "Estratégia",
+    "text": "1 apresentação e validação"
+   },
+   {
+    "title": "Expressão",
+    "text": "1 apresentação da identidade"
+   },
+   {
+    "title": "Ritmo",
+    "text": "Definido junto com o escritório, conforme complexidade, número de decisores e extensão da identidade"
+   }
+  ]
+ },
+ "leva": {
+  "title": "O resultado é: clareza sobre quem sua marca é, onde ela deve ocupar espaço e como deve ser percebida pelo mercado.",
+  "text": "O cliente não está comprando um logo, cores ou um manual. Está comprando uma marca estrategicamente posicionada, coerente com o negócio, diferenciada, verbalmente clara e visualmente consistente, à altura da maturidade que o escritório já alcançou. A identidade visual é a parte concreta dessa transformação."
+ },
+ "faq": {
+  "eyebrow": "Perguntas frequentes",
+  "title": "O que mais nos perguntam",
+  "items": [
+   {
+    "q": "Já temos uma identidade visual. Precisamos de outra?",
+    "a": "O problema não é ter ou não uma identidade. A pergunta é: ela ainda representa o escritório que vocês são hoje? Se representa, ótimo. Se não, isso aparece durante a investigação."
+   },
+   {
+    "q": "Nosso logo está bom. Por que começar do zero?",
+    "a": "Não precisamos começar pelo logo. Primeiro entendemos se a marca está estrategicamente alinhada ao negócio. O que precisa ou não mudar é uma consequência disso."
+   },
+   {
+    "q": "Só preciso atualizar a identidade. Serve?",
+    "a": "Talvez. Mas antes de decidir o que atualizar visualmente, precisamos entender o que mudou no negócio. É essa mudança que orienta a atualização."
+   },
+   {
+    "q": "Já temos uma agência. O GAP substitui?",
+    "a": "Não necessariamente. O papel do GAP é estruturar a marca estrategicamente. A execução posterior (marketing, comunicação diária, aquisição) pode continuar com a equipe responsável, desde que exista alinhamento."
+   },
+   {
+    "q": "Quanto tempo leva?",
+    "a": "Normalmente de 30 a 60 dias, em 5 a 6 reuniões estratégicas. A duração depende da complexidade do escritório, da quantidade de decisores, do número de áreas e da extensão da identidade."
+   },
+   {
+    "q": "O que o GAP entrega e o que não entrega?",
+    "a": "O GAP é responsável por construir estrategicamente a marca: estratégia, posicionamento e expressão. Marketing, comunicação diária, aquisição e vendas são executados pelo cliente depois. Orientamos o uso da marca, mas não prometemos resultados comerciais que dependem de fatores externos ao projeto."
+   },
+   {
+    "q": "Para quem o método não serve?",
+    "a": "O GAP não constrói a primeira versão de um negócio. Não é para advogados recém-formados, escritórios ainda validando sua oferta ou quem procura apenas uma identidade visual barata. É para escritórios consolidados cuja marca precisa acompanhar a próxima fase."
+   }
+  ]
+ }
+}

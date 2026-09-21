@@ -1,0 +1,3 @@
+{%- macro tw(tag, cls, lines, speed=None, ease=None) -%}
+<{{ tag }} class="{{ cls }} typewriter" data-text="{{ lines|join('|') }}"{% if speed %} data-speed="{{ speed }}"{% endif %}{% if ease %} data-ease="{{ ease }}"{% endif %} aria-label="{{ lines|join(' ') }}"><span class="typewriter__ghost" aria-hidden="true">{{ lines|join('<br>') }}</span><span class="typewriter__typed" aria-hidden="true"></span><span class="typewriter__cursor" aria-hidden="true"></span></{{ tag }}>
+{%- endmacro -%}

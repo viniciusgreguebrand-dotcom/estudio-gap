@@ -136,7 +136,7 @@ if (form) {
     e.preventDefault();
     const status = form.querySelector('.form-status');
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    status.textContent = 'Mensagem enviada. Retornamos em breve.';
+    status.textContent = status.dataset.success || 'Mensagem enviada. Retornamos em breve.';
     form.reset();
   });
 }

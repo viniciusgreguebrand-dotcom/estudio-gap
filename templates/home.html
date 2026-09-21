@@ -1,0 +1,143 @@
+{% from 'partials/typewriter.html' import tw %}
+{% include 'partials/head.html' %}
+<body>
+
+{% include 'partials/nav.html' %}
+
+  <!-- HERO (fica fixa; a próxima faixa sobe por cima) -->
+  <section class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__wordmark">{{ hero_svg }}</h1>
+      <div class="hero__headline">
+        <p class="hero__eyebrow">{{ p.hero.eyebrow }}</p>
+        <h2>{{ p.hero.headline }}</h2>
+        <div class="hero__actions">
+          <a href="contato.html" class="btn btn--dark">{{ p.hero.btn1 }}</a>
+          <a href="#metodo" class="btn btn--ghost-dark">{{ p.hero.btn2 }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+
+    <!-- POSICIONAMENTO -->
+    <section class="band band--white tw-block" id="gap">
+      <div class="container gap-intro">
+        {{ tw('h2', 'h-lg gap-intro__text', p.intro.lines, '0.3', 'slow-end') }}
+      </div>
+    </section>
+
+    <!-- CASES EM DESTAQUE -->
+    <section class="band band--white portfolio" id="projetos">
+      <div class="container">
+        <p class="label">{{ p.cases.eyebrow }}</p>
+        <div class="showcase">
+          <aside class="showcase__info">
+            <h3 data-field="name">{{ projects[0].title }}</h3>
+            <p data-field="desc">{{ projects[0].summary }}</p>
+            <dl data-field="meta">
+              <div><dt>Projeto</dt><dd>{{ projects[0].services }}</dd></div>
+              <div><dt>Local</dt><dd>{{ projects[0].local }}</dd></div>
+              <div><dt>Ano</dt><dd>{{ projects[0].year }}</dd></div>
+            </dl>
+          </aside>
+          <div class="showcase__images">
+            {% for pr in projects %}
+            <a href="projetos/{{ pr.slug }}.html" class="showcase__item{% if loop.first %} is-active{% endif %}"
+               data-name="{{ pr.title }}"
+               data-desc="{{ pr.summary }}"
+               data-meta="Projeto|{{ pr.services }};Local|{{ pr.local }};Ano|{{ pr.year }}">
+              <span class="reveal-x">{% for s in pr.slides %}<img src="{{ s }}" alt="{{ pr.title if loop.first else '' }}" loading="{{ 'eager' if loop.first else 'lazy' }}" class="slide{% if loop.first %} is-on{% endif %}" />{% endfor %}</span>
+              <span class="showcase__caption">{{ pr.title }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        <a href="projetos.html" class="showcase__all">{{ p.cases.all }} <span>→</span></a>
+      </div>
+    </section>
+
+    <!-- SOBRE (faixa split) -->
+    <section class="split fade-dark" id="sobre">
+      <div class="split__content">
+        <h2 class="split__title">{{ p.sobre.title_lines|join('<br>') }}</h2>
+        <p class="split__mid">{{ p.sobre.mid }}</p>
+        <div class="split__foot">
+          <ul class="split__facts">
+            <li class="split__facts-lead">{{ p.sobre.facts_lead }} <strong>{{ p.sobre.facts_name }}</strong></li>
+            {% for f in p.sobre.facts %}<li>{{ f }}</li>
+            {% endfor %}
+          </ul>
+          <a href="sobre.html" class="btn btn--ghost">{{ p.sobre.button }}</a>
+        </div>
+      </div>
+      <figure class="split__media reveal-x reveal-x--right">
+        <span class="reveal-x__box"><video src="assets/vinicius-gregue.mp4" poster="assets/vinicius-gregue.jpg" autoplay muted loop playsinline aria-label="Vinicius Gregue, estrategista de marcas"></video></span>
+      </figure>
+    </section>
+
+    <!-- MANIFESTO (título com efeito de escrita) -->
+    <section class="manifesto tw-block" id="manifesto">
+      <div class="container manifesto__inner">
+        {{ tw('h2', 'manifesto__title', p.manifesto.lines) }}
+        <p class="manifesto__sub">{{ p.manifesto.sub|replace('\n', '<br>') }}</p>
+      </div>
+    </section>
+
+    <!-- MÉTODO (pinado: etapas trocam com a rolagem) -->
+    <section class="method" id="metodo">
+      <div class="method__stage">
+        <div class="container method__grid">
+          <div class="method__head">
+            <p class="label method__eyebrow">{{ p.metodo.eyebrow|replace('™', '<sup>™</sup>') }}</p>
+            <h2 class="method__title">{{ p.metodo.title|replace('\n', '<br>') }}</h2>
+          </div>
+          <div class="method__left">
+            <ol class="method__steps">
+              {% for s in p.metodo.steps %}<li class="method__step{% if loop.first %} is-active{% endif %}" data-step="{{ loop.index0 }}"><span class="method__num">{{ '%02d' % loop.index }}.</span><span class="method__name">{{ s.name }}</span></li>
+              {% endfor %}
+            </ol>
+          </div>
+          <div class="method__right">
+            {% for s in p.metodo.steps %}
+            <div class="method__panel{% if loop.first %} is-active{% endif %}" data-panel="{{ loop.index0 }}">
+              <div class="method__head">
+                <p class="method__stage-label"><span>{{ '%02d' % loop.index }}.</span> {{ s.name }}</p>
+                <h3>{{ s.question }}</h3>
+                <p class="method__desc">{{ s.desc }}</p>
+              </div>
+              <div class="method__result">
+                <h4>Resultado:</h4>
+                <p>{{ s.result }}</p>
+              </div>
+              <ul class="mt-pillar__list method__tags">{% for t in s.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="band band--dark fade-dark" id="depoimentos">
+      <div class="container">
+        <p class="label label--light">{{ p.depoimentos.eyebrow }}</p>
+        <div class="marquee" aria-label="Depoimentos de clientes">
+          <div class="marquee__track">
+            {% for _ in range(2) %}{% for t in p.depoimentos['items'] %}
+            <blockquote class="testimonial">
+              <p>“{{ t.quote }}”</p>
+              <footer><strong>{{ t.name }}</strong><span>{{ t.org }}</span></footer>
+            </blockquote>
+            {% endfor %}{% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% include 'partials/cta.html' %}
+
+  </main>
+
+{% include 'partials/footer.html' %}

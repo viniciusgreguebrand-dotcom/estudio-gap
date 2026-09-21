@@ -1,0 +1,37 @@
+{% include 'partials/head.html' %}
+<body class="page-inner">
+
+{% include 'partials/nav.html' %}
+
+  <main class="page">
+    <article class="case">
+      <div class="container">
+        <a href="../projetos.html" class="case__back">← Todos os projetos</a>
+        <div class="case__intro">
+          <div>
+            <h1 class="h-xl">{{ pr.title }}</h1>
+            <dl class="case__meta">
+              <div><dt>Serviços</dt><dd>{{ pr.services }}</dd></div>
+              {% if pr.year %}<div><dt>Ano</dt><dd>{{ pr.year }}</dd></div>{% endif %}
+              {% if pr.local %}<div><dt>Local</dt><dd>{{ pr.local }}</dd></div>{% endif %}
+              {% if pr.credits %}<div><dt>Créditos</dt><dd>{{ pr.credits }}</dd></div>{% endif %}
+            </dl>
+          </div>
+          {% if pr.summary %}<p class="body case__summary">{{ pr.summary }}</p>{% endif %}
+        </div>
+      </div>
+
+      <div class="container case__blocks">
+{{ blocks_html }}
+      </div>
+
+      <div class="container">
+        <a href="{{ nxt.slug }}.html" class="case__next">
+          <span class="label">Próximo projeto</span>
+          <span class="h-lg">{{ nxt.title }} →</span>
+        </a>
+      </div>
+    </article>
+  </main>
+
+{% include 'partials/footer.html' %}

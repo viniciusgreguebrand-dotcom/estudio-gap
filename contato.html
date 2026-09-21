@@ -31,35 +31,15 @@
         <h1 class="h-xl">Um novo capítulo começa aqui.</h1>
         <p class="body">Toda transformação começa com uma boa conversa. Conte o momento da sua marca e o que você quer construir.</p>
         <div class="cta__form cta__form--page">
-
         <form class="contact__form" action="#" method="post" novalidate>
           <div class="form-two">
-            <label class="field">
-              <span>Seu nome *</span>
-              <input name="nome" autocomplete="name" required minlength="2" maxlength="150" />
-            </label>
-            <label class="field">
-              <span>E-mail *</span>
-              <input name="email" type="email" autocomplete="email" required maxlength="250" />
-            </label>
+            <label class="field"><span>Seu nome *</span><input name="nome" autocomplete="name" required minlength="2" maxlength="150" /></label>
+            <label class="field"><span>E-mail *</span><input name="email" type="email" autocomplete="email" required maxlength="250" /></label>
           </div>
-
-          <label class="field">
-            <span>Qual momento melhor representa sua marca?</span>
-            <select name="momento">
-              <option value="">Selecione uma opção</option>
-              <option>Estou criando uma marca</option>
-              <option>Quero reposicionar minha marca</option>
-              <option>Meu negócio está crescendo</option>
-              <option>Quero conversar sobre outro desafio</option>
-            </select>
+          <label class="field"><span>Qual momento melhor representa sua marca?</span>
+            <select name="momento"><option value="">Selecione uma opção</option><option>Estou criando uma marca</option><option>Quero reposicionar minha marca</option><option>Meu negócio está crescendo</option><option>Quero conversar sobre outro desafio</option></select>
           </label>
-
-          <label class="field">
-            <span>Conte um pouco sobre o seu desafio *</span>
-            <textarea name="desafio" required minlength="15" maxlength="5000" rows="4" placeholder="O que você imagina para o próximo capítulo da sua marca?"></textarea>
-          </label>
-
+          <label class="field"><span>Conte um pouco sobre o seu desafio *</span><textarea name="desafio" required minlength="15" maxlength="5000" rows="4" placeholder="O que você imagina para o próximo capítulo da sua marca?"></textarea></label>
           <fieldset class="field services-field">
             <legend>Como podemos ajudar?</legend>
             <div>
@@ -74,26 +54,12 @@
               <input class="services-field__other-text" name="servicos_outro" placeholder="Qual?" hidden />
             </div>
           </fieldset>
-
-          <label class="field">
-            <span>Investimento previsto</span>
-            <select name="investimento">
-              <option value="">Selecione uma opção</option>
-              <option>de 2.000 a 5.000,00</option>
-              <option>de 5.000 a 10.000,00</option>
-              <option>+10.000,00</option>
-            </select>
+          <label class="field"><span>Investimento previsto</span>
+            <select name="investimento"><option value="">Selecione uma opção</option><option>de 2.000 a 5.000,00</option><option>de 5.000 a 10.000,00</option><option>+10.000,00</option></select>
           </label>
-
-          <label class="field">
-            <span>Nome da empresa ou marca</span>
-            <input name="empresa" autocomplete="organization" maxlength="150" />
-          </label>
-
-          <div class="form-submit">
-            <button type="submit" class="btn btn--dark btn--lg">Enviar projeto</button>
-          </div>
-          <p class="form-status" aria-live="polite"></p>
+          <label class="field"><span>Nome da empresa ou marca</span><input name="empresa" autocomplete="organization" maxlength="150" /></label>
+          <div class="form-submit"><button type="submit" class="btn btn--dark btn--lg">Enviar projeto</button></div>
+          <p class="form-status" aria-live="polite" data-success="Mensagem enviada. Retornamos em breve."></p>
         </form>
         </div>
       </div>

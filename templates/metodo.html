@@ -1,0 +1,112 @@
+{% from 'partials/typewriter.html' import tw %}
+{% include 'partials/head.html' %}
+<body class="page-inner">
+
+{% include 'partials/nav.html' %}
+
+  <main class="page">
+
+    <!-- OVERVIEW -->
+    <section class="band band--white mt-hero">
+      <div class="container">
+        <p class="label">{{ p.hero.eyebrow }}</p>
+        <div class="mt-hero__grid">
+          <h1 class="h-xl mt-hero__title">{{ p.hero.title|replace('\n', '<br>') }}</h1>
+          <div class="mt-hero__text">
+            <p class="mt-hero__lead">{{ p.hero.lead }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 PILARES (acordeão) -->
+    <section class="band band--white mt-listband mt-sticky">
+      <div class="container">
+        <ol class="mt-list">
+          {% for pl in p.pilares %}
+          <li class="mt-list__item" id="{{ pl.slug }}">
+            <button class="mt-list__row" aria-expanded="false" aria-controls="{{ pl.slug }}-panel">
+              <span class="mt-list__num">{{ '%02d' % loop.index }}.</span><span class="mt-list__name">{{ pl.name }}</span><span class="mt-list__arrow">↓</span>
+            </button>
+            <div class="mt-list__panel" id="{{ pl.slug }}-panel">
+              <div class="mt-list__panel-inner">
+                <p class="mt-pillar__q">{{ pl.question }}</p>
+                {% for t in pl.paragraphs %}<p class="body">{{ t }}</p>
+                {% endfor %}
+                <ul class="mt-pillar__list">{% for t in pl.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+        <p class="mt-list__count">01 / {{ '%02d' % p.pilares|length }}</p>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="band band--dark fade-dark mt-process">
+      <div class="container">
+        <p class="label label--light">{{ p.processo.eyebrow }}</p>
+        <h2 class="h-lg mt-process__title">{{ p.processo.title }}</h2>
+        <div class="mt-steps">
+          {% for s in p.processo.steps %}<div class="mt-step"><span>{{ '%02d' % loop.index }}.</span><h3>{{ s.title }}</h3><p>{{ s.text }}</p></div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO -->
+    <section class="band band--dark fade-dark fade-dark--stay mt-timeline">
+      <div class="container">
+        <h2 class="h-lg mt-tl__heading">{{ p.timeline.title|replace('™', '<sup>™</sup>') }}</h2>
+        <div class="mt-tl">
+          <div class="mt-tl__groups">
+            {% for gname in p.timeline.groups %}<div class="mt-tl__group" style="--span: 4"><span>{{ gname }}</span></div>
+            {% endfor %}
+          </div>
+          <ol class="mt-tl__track">
+            {% for n in p.timeline.nodes %}<li class="mt-tl__node{% if loop.last %} mt-tl__node--end{% endif %}"><b>{{ n.label }}</b><i></i><em>{{ n.deliverable|replace('\n', '<br>')|replace('&', '&amp;') }}</em></li>
+            {% endfor %}
+          </ol>
+          <div class="mt-tl__phases">
+            {% for ph in p.timeline.phases %}<div class="mt-tl__phase" style="--span: {{ ph.span }}">{{ ph.label }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="mt-tl__meta">
+          {% for m in p.timeline.meta %}<div><strong>{{ m.title }}</strong><span>{{ m.text }}</span></div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- O RESULTADO -->
+    <section class="band band--dark fade-dark fade-dark--stay tw-block mt-leva">
+      <div class="container mt-leva__inner">
+        {{ tw('h2', 'h-md', [p.leva.title], '0.4') }}
+        <p class="body tw-after">{{ p.leva.text }}</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="band band--white mt-faq">
+      <div class="container">
+        <p class="label">{{ p.faq.eyebrow }}</p>
+        <h2 class="h-lg">{{ p.faq.title }}</h2>
+        <div class="faq">
+          {% for f in p.faq['items'] %}
+          <details class="faq__item"{% if loop.first %} open{% endif %}>
+            <summary><span>{{ '%02d' % loop.index }}</span>{{ f.q }}</summary>
+            <p>{{ f.a }}</p>
+          </details>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+{% set inline_form = true %}
+{% include 'partials/cta.html' %}
+
+  </main>
+
+{% include 'partials/footer.html' %}
