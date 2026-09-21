@@ -105,26 +105,29 @@ def esc(s):
 
 def nav(rel, active=''):
     return f'''  <header class="nav is-scrolled">
-    <a href="{rel}index.html" class="nav__brand">GAP<sup>®</sup></a>
+    <a href="{rel}index.html" class="nav__brand"><img src="{rel}assets/gap-logo.png" alt="GAP" class="nav__logo" /></a>
+    <div class="nav__right">
     <nav class="nav__links">
+      <a href="{rel}index.html">Início</a>
       <a href="{rel}projetos.html"{' class="is-active"' if active == 'projetos' else ''}>Projetos</a>
       <a href="{rel}sobre.html">Sobre</a>
-      <a href="{rel}index.html#metodo">Método</a>
+      <a href="{rel}metodo.html">Método</a>
     </nav>
     <a href="{rel}contato.html" class="btn btn--dark">Fale conosco</a>
+    </div>
   </header>
 '''
 
 
 def footer(rel):
-    return f'''  <footer class="footer fade-dark">
+    return f'''  <footer class="footer">
     <div class="container">
       <div class="footer__top">
-        <span class="footer__wordmark">GAP<sup>®</sup></span>
+        <span class="footer__wordmark"><img src="{rel}assets/gap-logo.png" alt="GAP" class="footer__logo" /></span>
         <nav class="footer__links">
           <a href="{rel}projetos.html">Projetos</a>
           <a href="{rel}sobre.html">Sobre</a>
-          <a href="{rel}index.html#metodo">Método</a>
+          <a href="{rel}metodo.html">Método</a>
           <a href="{rel}contato.html">Fale conosco</a>
         </nav>
       </div>
@@ -166,22 +169,26 @@ def meta_line(p):
     return ' · '.join(parts)
 
 
+def slides(p):
+    srcs = p.get('slides') or [p['cover']] + [b['src'] for b in p['body'] if b['t'] == 'img' and not b['src'].endswith('.gif')][:5]
+    return ''.join(f'<img src="{s}" alt="{esc(p["name"]) if i == 0 else ""}" loading="{"eager" if i == 0 else "lazy"}" class="slide{" is-on" if i == 0 else ""}" />' for i, s in enumerate(srcs))
+
+
 def gallery_page(projects):
     cards = ''
     for p in projects:
         cards += f'''        <article class="gallery__item">
           <a href="projetos/{p['slug']}.html">
-            <span class="reveal-x gallery__cover"><img src="{p['cover']}" alt="{esc(p['name'])}" loading="lazy" /></span>
+            <span class="reveal-x gallery__cover">{slides(p)}</span>
             <h2>{esc(p['name'])}</h2>
           </a>
           <div class="gallery__meta">
             <p>{esc(dict(p['meta']).get('Serviços', ''))}</p>
             <span>{esc(meta_line(p))}</span>
           </div>
-          {f'<p class="gallery__summary">{esc(p["summary"])}</p>' if p['summary'] else ''}
         </article>
 '''
-    return (head('Projetos — Estúdio GAP', 'Galeria de projetos do Estúdio GAP.', '') + nav('', 'projetos') + f'''
+    return (head('Projetos · Estúdio GAP', 'Galeria de projetos do Estúdio GAP.', '') + nav('', 'projetos') + f'''
   <main class="page">
     <section class="band band--white gallery">
       <div class="container">
@@ -196,20 +203,74 @@ def gallery_page(projects):
 ''' + footer(''))
 
 
+EN_HINTS = (' the ', ' and ', ' with ', ' of ', ' is ', ' are ', ' that ', ' their ', ' through ')
+
+
+def is_english(txt):
+    t = ' ' + txt.lower() + ' '
+    return sum(t.count(h) for h in EN_HINTS) >= 4
+
+
+def split_langs(txt):
+    """Divide um parágrafo bilíngue em (pt, en). Marcadores aceitos: PT-BR / PT / EN, em qualquer ordem."""
+    parts = re.split(r'(?:^|\n)\s*(PT-BR|PT|EN)\b\s*', txt)
+    if len(parts) > 1:
+        pt, en, cur = [], [], None
+        lead = parts[0].strip()  # cabeçalho antes do primeiro marcador vira título do bloco
+        for i in range(1, len(parts), 2):
+            cur = parts[i]; body = parts[i + 1].strip()
+            (en if cur == 'EN' else pt).append(body)
+        return '\n'.join(pt).strip(), '\n'.join(en).strip(), lead
+    if len(txt) < 70 and '\n' in txt or len(txt) < 45:
+        return '', '', txt  # linha curta = título do bloco
+    return ('', txt, '') if is_english(txt) else (txt, '', '')
+
+
+def render_text_group(group):
+    """Grupo de blocos de texto consecutivos → cabeçalhos em largura total + 2 colunas (PT | EN)."""
+    out = ''
+    pt, en = [], []
+    def flush():
+        nonlocal out, pt, en
+        if not pt and not en:
+            return
+        if pt and en:
+            out += '        <div class="case__text">\n'
+            out += '          <div class="case__pt">' + ''.join(f'<p class="case__p">{x}</p>' for x in pt) + '</div>\n'
+            out += '          <div class="case__en">' + ''.join(f'<p class="case__p">{x}</p>' for x in en) + '</div>\n'
+            out += '        </div>\n'
+        else:
+            out += ''.join(f'        <p class="case__p">{x}</p>\n' for x in (pt or en))
+        pt, en = [], []
+    for b in group:
+        if b['t'] in ('h2', 'h3'):
+            flush()
+            out += f'        <h2 class="case__h">{esc(b["txt"])}</h2>\n'
+        else:
+            p_txt, e_txt, lead = split_langs(b['txt'])
+            if lead:
+                flush()
+                out += f'        <h2 class="case__h">{esc(lead).replace(chr(10), "<br>")}</h2>\n'
+            if p_txt: pt.append(esc(p_txt).replace('\n', '<br>'))
+            if e_txt: en.append(esc(e_txt).replace('\n', '<br>'))
+    flush()
+    return out
+
+
 def case_page(p, nxt):
     dl = ''.join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in p['meta'])
     body = ''
-    for b in p['body']:
+    group = []
+    for b in p['body'] + [{'t': 'end'}]:
+        if b['t'] in ('p', 'h2', 'h3'):
+            group.append(b); continue
+        if group:
+            body += render_text_group(group); group = []
         if b['t'] == 'img':
             body += f'        <figure class="case__media"><img src="{b["src"]}" alt="{esc(b.get("alt", ""))}" loading="lazy" /></figure>\n'
         elif b['t'] == 'video':
             body += f'        <div class="case__video"><iframe src="{b["src"]}" allow="autoplay; fullscreen" loading="lazy" title="Vídeo do projeto"></iframe></div>\n'
-        elif b['t'] in ('h2', 'h3'):
-            body += f'        <h2 class="case__h">{esc(b["txt"])}</h2>\n'
-        elif b['t'] == 'p':
-            txt = esc(b['txt']).replace('\n', '<br>')
-            body += f'        <p class="case__p">{txt}</p>\n'
-    return (head(f"{p['name']} — Estúdio GAP", p['summary'] or p['name'], '../') + nav('../') + f'''
+    return (head(f"{p['name']} · Estúdio GAP", p['summary'] or p['name'], '../') + nav('../') + f'''
   <main class="page">
     <article class="case">
       <div class="container">

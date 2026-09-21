@@ -25,8 +25,10 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 
 // Nav: fundo ao passar da hero
 const nav = document.querySelector('.nav');
+const hasHero = !!document.querySelector('.hero');
 lenis.on('scroll', ({ scroll }) => {
-  nav.classList.toggle('is-scrolled', scroll > window.innerHeight * 0.85);
+  // só a home tem hero transparente; nas páginas internas a nav fica sempre com fundo
+  if (hasHero) nav.classList.toggle('is-scrolled', scroll > window.innerHeight * 0.85);
 });
 
 
@@ -49,7 +51,8 @@ if (method) {
     const r = method.getBoundingClientRect();
     const total = r.height - window.innerHeight;
     const p = Math.min(1, Math.max(0, -r.top / total));
-    setActive(Math.min(steps.length - 1, Math.floor(p * steps.length)));
+    // troca no meio do trecho de cada etapa (mais sensível) e limita ao índice válido
+    setActive(Math.min(steps.length - 1, Math.round(p * (steps.length - 1))));
   };
   lenis.on('scroll', onScroll);
   onScroll();
@@ -66,10 +69,19 @@ if (method) {
     s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
   });
 
-  // entrada por etapas ao chegar na seção
+  // entrada por etapas: só depois que o manifesto terminar de escrever (e a seção estiver na tela)
+  let methodVisible = false, manifestoDone = !document.querySelector('.manifesto');
+  const tryReveal = () => {
+    if (!methodVisible) return;
+    // se o usuário pulou o manifesto (ex.: link "Método"), não fica esperando
+    const man = document.querySelector('.manifesto');
+    if (man && man.getBoundingClientRect().bottom < 0) manifestoDone = true;
+    if (manifestoDone) method.classList.add('is-in');
+  };
   new IntersectionObserver((entries, io) => {
-    if (entries.some((e) => e.isIntersecting)) { method.classList.add('is-in'); io.disconnect(); }
+    if (entries.some((e) => e.isIntersecting)) { methodVisible = true; io.disconnect(); tryReveal(); }
   }, { rootMargin: '0px 0px -30% 0px' }).observe(method);
+  document.addEventListener('manifesto:done', () => { manifestoDone = true; tryReveal(); });
 }
 
 // Projetos: item ativo muda conforme a rolagem e atualiza o painel fixo
@@ -110,6 +122,7 @@ if (fades.length) {
       if (!e.isIntersecting) return;
       e.target.classList.add('is-revealed');
       e.target.querySelectorAll('.reveal-x').forEach((r) => r.classList.add('is-shown'));
+      e.target.querySelectorAll('video[autoplay]').forEach((v) => v.play().catch(() => {}));
       fio.unobserve(e.target);
     });
   }, { rootMargin: '0px 0px -30% 0px', threshold: 0 });
@@ -175,3 +188,120 @@ if (heroMark) {
   lenis.on('scroll', ({ scroll }) => update(scroll));
   update(window.scrollY);
 }
+
+
+// Efeito de escrita: qualquer .tw-block com um .typewriter[data-text] (frases separadas por |)
+document.querySelectorAll('.tw-block').forEach((block) => {
+  const tw = block.querySelector('.typewriter');
+  if (!tw) return;
+  const typed = tw.querySelector('.typewriter__typed');
+  const cursor = tw.querySelector('.typewriter__cursor');
+  const full = tw.dataset.text.split('|').join('\n');
+  const speed = parseFloat(tw.dataset.speed || '1'); // <1 = mais rápido
+  const placeCursor = () => {
+    const node = typed.firstChild;
+    if (!node) { cursor.style.left = '0px'; cursor.style.top = '0px'; return; }
+    const range = document.createRange();
+    range.setStart(node, node.length); range.setEnd(node, node.length);
+    const rects = range.getClientRects(); const r = rects[rects.length - 1] || range.getBoundingClientRect();
+    const box = tw.getBoundingClientRect();
+    cursor.style.left = (r.right - box.left) + 'px';
+    cursor.style.top = (r.top - box.top + (r.height - cursor.offsetHeight) / 2) + 'px';
+  };
+  const run = () => {
+    block.classList.add('is-typing');
+    let i = 0;
+    const step = () => {
+      i += 1;
+      typed.textContent = full.slice(0, i);
+      placeCursor();
+      if (i < full.length) {
+        const ch = full[i - 1];
+        const delay = ch === '.' ? 170 : ch === '\n' ? 120 : ch === ' ' ? 28 : 15 + Math.random() * 16;
+        // data-ease="slow-end": começa rápido e desacelera até o fim (curva quadrática)
+        const p = i / full.length;
+        const ease = tw.dataset.ease === 'slow-end' ? 0.4 + 2.2 * p * p : 1;
+        setTimeout(step, delay * speed * ease);
+      } else {
+        block.classList.remove('is-typing');
+        block.classList.add('is-done');
+        if (block.classList.contains('manifesto')) document.dispatchEvent(new Event('manifesto:done'));
+      }
+    };
+    setTimeout(step, 140);
+  };
+  new IntersectionObserver((entries, io) => {
+    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); run(); }
+  }, { rootMargin: '0px 0px -35% 0px' }).observe(block);
+  window.addEventListener('resize', placeCursor);
+});
+
+// CTA: botão "Fale conosco" abre o formulário logo abaixo
+const ctaToggle = document.querySelector('.cta__toggle');
+if (ctaToggle) {
+  const box = document.getElementById(ctaToggle.getAttribute('aria-controls'));
+  ctaToggle.addEventListener('click', () => {
+    const open = box.hasAttribute('hidden');
+    if (open) box.removeAttribute('hidden'); else box.setAttribute('hidden', '');
+    ctaToggle.setAttribute('aria-expanded', String(open));
+    if (open) { lenis.scrollTo(box, { offset: -120, duration: 0.8 }); box.querySelector('input')?.focus({ preventScroll: true }); }
+  });
+}
+
+// Método: lista de pilares entra em cascata; cada item abre o detalhe ao clicar
+const listband = document.querySelector('.mt-listband');
+if (listband) {
+  const pin = () => { listband.style.top = Math.min(0, window.innerHeight - listband.offsetHeight) + 'px'; };
+  pin(); window.addEventListener('resize', pin); lenis.on('scroll', pin);
+  new IntersectionObserver((entries, io) => {
+    if (entries.some((e) => e.isIntersecting)) { listband.classList.add('is-in'); io.disconnect(); }
+  }, { rootMargin: '0px 0px -25% 0px' }).observe(listband);
+  listband.querySelectorAll('.mt-list__row').forEach((row) => {
+    row.addEventListener('click', () => {
+      const li = row.closest('.mt-list__item');
+      const open = li.classList.toggle('is-open');
+      row.setAttribute('aria-expanded', String(open));
+    });
+  });
+}
+
+
+// Método: os 8 passos do processo surgem um por um, depois que a faixa escurece
+const process = document.querySelector('.mt-process');
+if (process) {
+  const steps = [...process.querySelectorAll('.mt-step')];
+  let shown = false;
+  const showSteps = () => { if (shown) return; shown = true; steps.forEach((s, i) => setTimeout(() => s.classList.add('is-in'), 100 + i * 220)); };
+  // só quando metade da faixa já subiu na tela (o título entra antes, pelo fade da faixa)
+  const check = () => { if (process.getBoundingClientRect().top <= window.innerHeight * 0.5) showSteps(); };
+  lenis.on('scroll', check); check();
+}
+
+
+// Formulário: "Outro" libera um campo de texto
+document.querySelectorAll('input[data-other]').forEach((cb) => {
+  const txt = cb.closest('fieldset').querySelector('.services-field__other-text');
+  cb.addEventListener('change', () => { if (cb.checked) { txt.removeAttribute('hidden'); txt.focus(); } else { txt.setAttribute('hidden', ''); txt.value = ''; } });
+});
+
+
+// Vídeos com autoplay: garante o play ao carregar (Safari às vezes segura)
+window.addEventListener('load', () => document.querySelectorAll('video[autoplay]').forEach((v) => v.play().catch(() => {})));
+
+
+// Hero: depois da entrada do símbolo, liga a "respiração" leve dos anéis
+const heroLogo = document.querySelector('.hero__logo');
+if (heroLogo) setTimeout(() => heroLogo.classList.add('is-settled'), 2700);
+
+
+// Capas dos projetos: troca de imagens em loop (crossfade) dentro de cada quadro
+document.querySelectorAll('.reveal-x').forEach((box) => {
+  const slides = [...box.querySelectorAll('img.slide')];
+  if (slides.length < 2) return;
+  let i = 0;
+  setInterval(() => {
+    slides[i].classList.remove('is-on');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-on');
+  }, 1000);
+});

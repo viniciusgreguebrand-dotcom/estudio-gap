@@ -76,3 +76,19 @@ Se preferir não usar o terminal:
 ## Atualizar o site depois
 
 Qualquer alteração: `git add -A && git commit -m "..." && git push` — o GitHub Pages republica sozinho em ~1 min.
+
+---
+
+## Backup — registros DNS antigos (ChatGPT), removidos em 20/09/2026
+
+Caso precise voltar ao site antigo, recriar no Registro.br → Configurar zona DNS:
+
+| Tipo  | Nome | Dados |
+|-------|------|-------|
+| A     | estudiogap.com.br | 162.159.143.30 |
+| A     | estudiogap.com.br | 172.66.3.26 |
+| CNAME | www.estudiogap.com.br | custom-domains.chatgpt.site. |
+| TXT   | _cf-custom-hostname.estudiogap.com.br | "589efba0-545a-4fb2-8b37-854b9a6355b6" |
+| TXT   | _openai-site-verification.estudiogap.com.br | "openai-site-verification=RC80Q9fB4mlmovnRHCw_WWmanFRnInNKZEYv1A8jU6A" |
+| TXT   | _cf-custom-hostname.www.estudiogap.com.br | "654df390-ee28-44af-806a-0a96d9a1316c" |
+| TXT   | _openai-site-verification.www.estudiogap.com.br | "openai-site-verification=CsN7rYl8N12f-Wbd0PHHleL5gncr6X3BxCB6O-C6d_8" |

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre — Estúdio GAP</title>
+  <title>Sobre · Estúdio GAP</title>
   <meta name="description" content="O Estúdio GAP é conduzido por Vinicius Gregue, estrategista de marcas com 7 anos de atuação em branding, especializado em advogados e escritórios consolidados." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,30 +13,33 @@
 <body class="page-inner page-inner--dark-top">
 
   <header class="nav is-scrolled">
-    <a href="index.html" class="nav__brand">GAP<sup>®</sup></a>
+    <a href="index.html" class="nav__brand"><img src="assets/gap-logo.png" alt="GAP" class="nav__logo" /></a>
+    <div class="nav__right">
     <nav class="nav__links">
+      <a href="index.html">Início</a>
       <a href="projetos.html">Projetos</a>
       <a href="sobre.html" class="is-active">Sobre</a>
-      <a href="index.html#metodo">Método</a>
+      <a href="metodo.html">Método</a>
     </nav>
     <a href="contato.html" class="btn btn--dark">Fale conosco</a>
+    </div>
   </header>
 
   <main class="page">
 
-    <!-- Abertura (faixa split — referência flyhyer.com) -->
+    <!-- Abertura (faixa split, referência flyhyer.com) -->
     <section class="split split--hero">
       <div class="split__content">
-        <div>
-          <p class="label label--light">Sobre</p>
-          <h1 class="split__title">Marca à altura do negócio.</h1>
-        </div>
-        <div class="split__foot">
-          <p>O Estúdio GAP é conduzido por Vinicius Gregue, estrategista de marcas com 7 anos de atuação em branding.</p>
-        </div>
+        <h1 class="split__title">Estúdio GAP.<br>Marcas à altura<br>da sua autoridade.</h1>
+        <ul class="split__facts">
+          <li class="split__facts-lead">Por <strong>Vinicius Gregue</strong></li>
+          <li>Fundador do Estúdio GAP ©</li>
+          <li>Estrategista de Marca</li>
+          <li>Bacharel em Direito</li>
+        </ul>
       </div>
       <figure class="split__media reveal-x reveal-x--right">
-        <img src="assets/vinicius-gregue.jpg" alt="Vinicius Gregue escrevendo em um caderno" />
+        <span class="reveal-x__box"><video src="assets/vinicius-gregue.mp4" poster="assets/vinicius-gregue.jpg" autoplay muted loop playsinline aria-label="Vinicius Gregue, estrategista de marcas"></video></span>
       </figure>
     </section>
 
@@ -47,44 +50,32 @@
 
         <div class="about-body__text">
           <p>Ao longo desses anos, escritórios excelentes foram vistos sendo percebidos como comuns. Sócios com décadas de experiência apresentados por identidades improvisadas. Diferenciais reais que nunca chegavam ao mercado porque a marca não sabia contá-los.</p>
-          <p>Esse é o GAP — a distância entre o que o escritório construiu e o que a marca consegue comunicar. É nessa distância que o estúdio trabalha.</p>
+          <p>Esse é o GAP: a distância entre o que o escritório construiu e o que a marca consegue comunicar. É nessa distância que o estúdio trabalha.</p>
           <p>O papel do estrategista não é entregar um logo. É investigar o negócio, entender a audiência, definir o posicionamento e só então traduzir tudo isso em uma expressão verbal e visual coerente. O estúdio também oferece consultoria para escritórios que precisam de clareza estratégica antes de qualquer decisão de comunicação.</p>
           <p>Bacharelado em Direito pela Universidade do Estado da Bahia complementa a atuação: compreensão do mercado jurídico por dentro e dos limites da publicidade na advocacia.</p>
         </div>
       </div>
     </section>
 
-    <!-- Fechamento -->
-    <section class="band band--dark fade-dark">
-      <div class="container band--dark__col">
-        <p class="label label--light">Princípio</p>
-        <h2 class="h-md">Estratégia antes da estética.</h2>
-        <div class="about-sign">
-          <strong>Vinicius Gregue</strong>
-          <span>Estrategista de marcas · Consultor · Fundador do Estúdio GAP</span>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA -->
-    <section class="band band--white" id="contato">
-      <div class="container cta">
-        <h2 class="h-xl">Sua marca está à altura do que você construiu?</h2>
-        <p class="body">Projetos de 30 a 60 dias, conduzidos por um método próprio. Vamos conversar sobre o momento do seu escritório.</p>
+    <section class="band band--white tw-block" id="contato">
+      <div class="container cta cta--center">
+        <h2 class="h-xl typewriter" data-text="Sua marca está à altura do que você construiu?" data-speed="0.5" aria-label="Sua marca está à altura do que você construiu?"><span class="typewriter__ghost" aria-hidden="true">Sua marca está à altura do que você construiu?</span><span class="typewriter__typed" aria-hidden="true"></span><span class="typewriter__cursor" aria-hidden="true"></span></h2>
+        <p class="body tw-after">Vamos conversar sobre o momento do seu escritório.</p>
         <a href="contato.html" class="btn btn--dark btn--lg">Fale conosco</a>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer fade-dark">
+  <footer class="footer">
     <div class="container">
       <div class="footer__top">
-        <span class="footer__wordmark">GAP<sup>®</sup></span>
+        <span class="footer__wordmark"><img src="assets/gap-logo.png" alt="GAP" class="footer__logo" /></span>
         <nav class="footer__links">
           <a href="projetos.html">Projetos</a>
           <a href="sobre.html">Sobre</a>
-          <a href="index.html#metodo">Método</a>
+          <a href="metodo.html">Método</a>
           <a href="contato.html">Fale conosco</a>
         </nav>
       </div>

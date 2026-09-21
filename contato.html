@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fale conosco — Estúdio GAP</title>
+  <title>Fale conosco · Estúdio GAP</title>
   <meta name="description" content="Conte o momento da sua marca e o que você quer construir. Branding estratégico para advogados e escritórios consolidados." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,23 +13,24 @@
 <body class="page-inner">
 
   <header class="nav is-scrolled">
-    <a href="index.html" class="nav__brand">GAP<sup>®</sup></a>
+    <a href="index.html" class="nav__brand"><img src="assets/gap-logo.png" alt="GAP" class="nav__logo" /></a>
+    <div class="nav__right">
     <nav class="nav__links">
+      <a href="index.html">Início</a>
       <a href="projetos.html">Projetos</a>
       <a href="sobre.html">Sobre</a>
-      <a href="index.html#metodo">Método</a>
+      <a href="metodo.html">Método</a>
     </nav>
     <a href="contato.html" class="btn btn--dark">Fale conosco</a>
+    </div>
   </header>
 
   <main class="page">
     <section class="band band--white contact">
-      <div class="container contact__grid">
-        <div class="contact__copy">
-          <p class="label">Fale conosco</p>
-          <h1 class="h-lg">Um novo capítulo começa aqui.</h1>
-          <p class="body">Toda transformação começa com uma boa conversa. Conte o momento da sua marca e o que você quer construir.</p>
-        </div>
+      <div class="container cta">
+        <h1 class="h-xl">Um novo capítulo começa aqui.</h1>
+        <p class="body">Toda transformação começa com uma boa conversa. Conte o momento da sua marca e o que você quer construir.</p>
+        <div class="cta__form cta__form--page">
 
         <form class="contact__form" action="#" method="post" novalidate>
           <div class="form-two">
@@ -69,6 +70,8 @@
               <label><input type="checkbox" name="servicos" value="Design de embalagens" /> Design de embalagens</label>
               <label><input type="checkbox" name="servicos" value="Design digital" /> Design digital</label>
               <label><input type="checkbox" name="servicos" value="Ainda não sei" /> Ainda não sei</label>
+              <label class="services-field__other"><input type="checkbox" name="servicos" value="Outro" data-other /> Outro</label>
+              <input class="services-field__other-text" name="servicos_outro" placeholder="Qual?" hidden />
             </div>
           </fieldset>
 
@@ -83,7 +86,7 @@
           </label>
 
           <label class="field">
-            <span>Empresa ou marca (opcional)</span>
+            <span>Nome da empresa ou marca</span>
             <input name="empresa" autocomplete="organization" maxlength="150" />
           </label>
 
@@ -92,18 +95,19 @@
           </div>
           <p class="form-status" aria-live="polite"></p>
         </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer fade-dark">
+  <footer class="footer">
     <div class="container">
       <div class="footer__top">
-        <span class="footer__wordmark">GAP<sup>®</sup></span>
+        <span class="footer__wordmark"><img src="assets/gap-logo.png" alt="GAP" class="footer__logo" /></span>
         <nav class="footer__links">
           <a href="projetos.html">Projetos</a>
           <a href="sobre.html">Sobre</a>
-          <a href="index.html#metodo">Método</a>
+          <a href="metodo.html">Método</a>
           <a href="contato.html">Fale conosco</a>
         </nav>
       </div>
