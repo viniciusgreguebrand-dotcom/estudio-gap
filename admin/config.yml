@@ -3,7 +3,7 @@ backend:
   name: github
   repo: viniciusgreguebrand-dotcom/estudio-gap
   branch: main
-  base_url: https://estudiogap-auth.SEU-SUBDOMINIO.workers.dev   # proxy de login (Cloudflare Worker) — ajustado no passo de login
+  base_url: https://estudiogap-auth.viniciusgreguebrand.workers.dev
   commit_messages:
     create: "Painel: cria {{collection}} “{{slug}}”"
     update: "Painel: atualiza {{collection}} “{{slug}}”"
