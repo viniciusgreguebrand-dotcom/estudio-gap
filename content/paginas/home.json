@@ -1,138 +1,135 @@
 {
- "seo": {
-  "title": "Estúdio GAP · Branding estratégico para advogados",
-  "description": "Branding estratégico para advogados e escritórios consolidados que precisam fazer sua marca comunicar a autoridade que já construíram."
- },
- "hero": {
-  "eyebrow": "Branding Estratégico para Advogados",
-  "headline": "Sua marca deveria comunicar a autoridade que você já construiu.",
-  "btn1": "Fale conosco",
-  "btn2": "Conheça o método"
- },
- "intro": {
-  "lines": [
-   "Branding estratégico para advogados",
-   "e escritórios consolidados que",
-   "precisam transformar sua autoridade,",
-   "diferenciais e visão de negócio em",
-   "uma marca forte, coerente e percebida",
-   "à altura do que construíram."
-  ]
- },
- "cases": {
-  "eyebrow": "Cases em destaque",
-  "all": "Ver todos os projetos"
- },
- "sobre": {
-  "title_lines": [
-   "Estúdio GAP.",
-   "Marcas à altura",
-   "da sua autoridade."
-  ],
-  "mid": "O papel do estrategista não é entregar um logo. É investigar o negócio, entender a audiência, definir o posicionamento e só então traduzir tudo isso em uma expressão verbal e visual coerente. O estúdio também oferece consultoria para escritórios que precisam de clareza estratégica antes de qualquer decisão de comunicação.",
-  "facts_lead": "Por",
-  "facts_name": "Vinicius Gregue",
-  "facts": [
-   "Fundador do Estúdio GAP ©",
-   "Estrategista de Marca",
-   "Bacharel em Direito"
-  ],
-  "button": "Conheça o estúdio"
- },
- "manifesto": {
-  "lines": [
-   "A identidade não começa no design.",
-   "Começa no negócio."
-  ],
-  "sub": "O Método GAP não começa desenhando. Começa investigando e criando uma estratégia.\nO design é consequência das decisões estratégicas."
- },
- "metodo": {
-  "eyebrow": "Método GAP™",
-  "title": "Nosso método\nem 4 etapas:",
-  "steps": [
-   {
-    "name": "Investigação",
-    "question": "O que realmente existe aqui que merece virar marca?",
-    "desc": "Antes de qualquer decisão visual, entendemos o escritório por dentro: história, modelo de atuação, visão dos sócios, audiência, mercado e concorrência. Mapeamos os diferenciais reais e a percepção que a marca gera hoje, por meio de entrevistas estratégicas, workshops e análise de negócio. É a etapa que descobre o que já existe de valioso e o que ainda não está sendo comunicado.",
-    "result": "Um diagnóstico claro da distância entre a autoridade construída e a percepção atual da marca.",
-    "tags": [
-     "Entrevistas estratégicas",
-     "Workshops",
-     "Pesquisa interna",
-     "Análise de negócio, audiência, mercado e concorrência",
-     "Mapeamento de diferenciais",
-     "Análise da percepção atual"
+  "seo": {
+    "title": "Estúdio GAP · Branding estratégico para advogados",
+    "description": "Branding estratégico para advogados e escritórios consolidados que precisam fazer sua marca comunicar a autoridade que já construíram."
+  },
+  "hero": {
+    "eyebrow": "Branding para Advogados",
+    "headline": "Sua marca deve comunicar a autoridade que você já construiu.",
+    "btn1": "Fale conosco",
+    "btn2": "Conheça o método GAP™"
+  },
+  "intro": {
+    "lines": [
+      "Branding estratégico para advogados",
+      "e escritórios consolidados que",
+      "precisam transformar sua autoridade diferenciais em uma marca forte e percebida à altura do que construíram."
     ]
-   },
-   {
-    "name": "Estratégia",
-    "question": "Que lugar essa marca deve ocupar na cabeça do mercado?",
-    "desc": "Transformamos a investigação em decisões. Definimos a plataforma de marca, a proposta de valor, o território e a diferenciação que o escritório consegue sustentar. Construímos a narrativa e, quando faz sentido, o arquétipo. Tudo é consolidado em um relatório estratégico validado com os sócios antes de seguir adiante.",
-    "result": "Uma direção estratégica que o escritório consegue cumprir, não uma frase bonita que a operação não entrega.",
-    "tags": [
-     "Relatório estratégico",
-     "Plataforma de marca",
-     "Proposta de valor",
-     "Território e diferenciação",
-     "Narrativa e direção estratégica"
+  },
+  "cases": {
+    "eyebrow": "Cases em destaque",
+    "all": "Ver todos os projetos"
+  },
+  "sobre": {
+    "title_lines": [
+      "Estúdio GAP.",
+      "Marcas à altura",
+      "da sua autoridade."
+    ],
+    "mid": "O papel do estrategista não é entregar um logo. É investigar o negócio, entender a audiência, definir o posicionamento e só então traduzir tudo isso em uma expressão verbal e visual coerente. O estúdio também oferece consultoria para escritórios que precisam de clareza estratégica antes de qualquer decisão de comunicação.",
+    "facts_lead": "Por",
+    "facts_name": "Vinicius Gregue",
+    "facts": [
+      "Fundador do Estúdio GAP ©",
+      "Estrategista de Marca",
+      "Bacharel em Direito"
+    ],
+    "button": "Conheça o estúdio"
+  },
+  "manifesto": {
+    "lines": [
+      "A identidade não começa no design.",
+      "Começa no negócio."
+    ],
+    "sub": "O Método GAP não começa desenhando. Começa investigando e criando uma estratégia.\nO design é consequência das decisões estratégicas."
+  },
+  "metodo": {
+    "eyebrow": "Método GAP™",
+    "title": "Nosso método\nem 4 etapas:",
+    "steps": [
+      {
+        "name": "Investigação",
+        "question": "O que realmente existe aqui que merece virar marca?",
+        "desc": "Antes de qualquer decisão visual, entendemos o escritório por dentro: história, modelo de atuação, visão dos sócios, audiência, mercado e concorrência. Mapeamos os diferenciais reais e a percepção que a marca gera hoje, por meio de entrevistas estratégicas, workshops e análise de negócio. É a etapa que descobre o que já existe de valioso e o que ainda não está sendo comunicado.",
+        "result": "Um diagnóstico claro da distância entre a autoridade construída e a percepção atual da marca.",
+        "tags": [
+          "Entrevistas estratégicas",
+          "Workshops",
+          "Pesquisa interna",
+          "Análise de negócio, audiência, mercado e concorrência",
+          "Mapeamento de diferenciais",
+          "Análise da percepção atual"
+        ]
+      },
+      {
+        "name": "Estratégia",
+        "question": "Que lugar essa marca deve ocupar na cabeça do mercado?",
+        "desc": "Transformamos a investigação em decisões. Definimos a plataforma de marca, a proposta de valor, o território e a diferenciação que o escritório consegue sustentar. Construímos a narrativa e, quando faz sentido, o arquétipo. Tudo é consolidado em um relatório estratégico validado com os sócios antes de seguir adiante.",
+        "result": "Uma direção estratégica que o escritório consegue cumprir, não uma frase bonita que a operação não entrega.",
+        "tags": [
+          "Relatório estratégico",
+          "Plataforma de marca",
+          "Proposta de valor",
+          "Território e diferenciação",
+          "Narrativa e direção estratégica"
+        ]
+      },
+      {
+        "name": "Posicionamento",
+        "question": "Como esse escritório precisa ser percebido?",
+        "desc": "Traduzimos a estratégia em percepção desejada. Definimos a palavra-chave da marca, a identidade verbal, as mensagens principais e o tom de voz, respeitando os limites da publicidade na advocacia. É aqui que a marca aprende a falar de si com clareza, sem parecer com todas as outras.",
+        "result": "Uma identidade verbal clara, que comunica especialização e autoridade na língua de quem contrata.",
+        "tags": [
+          "Palavra-chave",
+          "Identidade verbal",
+          "Mensagens principais",
+          "Tom de voz",
+          "Percepção desejada e direção de comunicação"
+        ]
+      },
+      {
+        "name": "Expressão",
+        "question": "Como a estratégia ganha forma?",
+        "desc": "Só agora o design entra. Criamos o conceito visual, o key visual e a identidade completa: sistema gráfico, tipografia, cores, elementos e aplicações. Tudo documentado em um brand guide, com orientação para que a equipe utilize a marca com consistência depois da entrega.",
+        "result": "Uma marca visualmente coerente com a maturidade do negócio, reconhecível e pronta para uso.",
+        "tags": [
+          "Conceito visual e key visual",
+          "Identidade visual e sistema gráfico",
+          "Tipografia, cores e elementos",
+          "Aplicações",
+          "Brand guide"
+        ]
+      }
     ]
-   },
-   {
-    "name": "Posicionamento",
-    "question": "Como esse escritório precisa ser percebido?",
-    "desc": "Traduzimos a estratégia em percepção desejada. Definimos a palavra-chave da marca, a identidade verbal, as mensagens principais e o tom de voz, respeitando os limites da publicidade na advocacia. É aqui que a marca aprende a falar de si com clareza, sem parecer com todas as outras.",
-    "result": "Uma identidade verbal clara, que comunica especialização e autoridade na língua de quem contrata.",
-    "tags": [
-     "Palavra-chave",
-     "Identidade verbal",
-     "Mensagens principais",
-     "Tom de voz",
-     "Percepção desejada e direção de comunicação"
+  },
+  "depoimentos": {
+    "eyebrow": "O que dizem os clientes",
+    "items": [
+      {
+        "quote": "Pela primeira vez a nossa marca diz o que a gente realmente é. O processo de investigação mudou a forma como os sócios enxergam o próprio escritório.",
+        "name": "Nome do sócio",
+        "org": "Karvalho Advocacia Tributária"
+      },
+      {
+        "quote": "Achávamos que precisávamos de um logo novo. Descobrimos que precisávamos de clareza sobre o nosso posicionamento.",
+        "name": "Nome do sócio",
+        "org": "Escritório"
+      },
+      {
+        "quote": "A marca finalmente acompanha o tamanho do escritório. Clientes e parceiros passaram a nos perceber de forma diferente.",
+        "name": "Nome do sócio",
+        "org": "Escritório"
+      },
+      {
+        "quote": "O método nos obrigou a decidir o que não queríamos ser. Isso deu uma clareza que nenhuma agência tinha nos dado antes.",
+        "name": "Nome do sócio",
+        "org": "Escritório"
+      },
+      {
+        "quote": "Saímos com uma marca que os próprios advogados da equipe têm orgulho de apresentar. Isso muda a conversa com o cliente desde o primeiro contato.",
+        "name": "Nome do sócio",
+        "org": "Escritório"
+      }
     ]
-   },
-   {
-    "name": "Expressão",
-    "question": "Como a estratégia ganha forma?",
-    "desc": "Só agora o design entra. Criamos o conceito visual, o key visual e a identidade completa: sistema gráfico, tipografia, cores, elementos e aplicações. Tudo documentado em um brand guide, com orientação para que a equipe utilize a marca com consistência depois da entrega.",
-    "result": "Uma marca visualmente coerente com a maturidade do negócio, reconhecível e pronta para uso.",
-    "tags": [
-     "Conceito visual e key visual",
-     "Identidade visual e sistema gráfico",
-     "Tipografia, cores e elementos",
-     "Aplicações",
-     "Brand guide"
-    ]
-   }
-  ]
- },
- "depoimentos": {
-  "eyebrow": "O que dizem os clientes",
-  "items": [
-   {
-    "quote": "Pela primeira vez a nossa marca diz o que a gente realmente é. O processo de investigação mudou a forma como os sócios enxergam o próprio escritório.",
-    "name": "Nome do sócio",
-    "org": "Karvalho Advocacia Tributária"
-   },
-   {
-    "quote": "Achávamos que precisávamos de um logo novo. Descobrimos que precisávamos de clareza sobre o nosso posicionamento.",
-    "name": "Nome do sócio",
-    "org": "Escritório"
-   },
-   {
-    "quote": "A marca finalmente acompanha o tamanho do escritório. Clientes e parceiros passaram a nos perceber de forma diferente.",
-    "name": "Nome do sócio",
-    "org": "Escritório"
-   },
-   {
-    "quote": "O método nos obrigou a decidir o que não queríamos ser. Isso deu uma clareza que nenhuma agência tinha nos dado antes.",
-    "name": "Nome do sócio",
-    "org": "Escritório"
-   },
-   {
-    "quote": "Saímos com uma marca que os próprios advogados da equipe têm orgulho de apresentar. Isso muda a conversa com o cliente desde o primeiro contato.",
-    "name": "Nome do sócio",
-    "org": "Escritório"
-   }
-  ]
- }
+  }
 }
