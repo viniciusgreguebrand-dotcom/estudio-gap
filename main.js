@@ -174,11 +174,50 @@ if (heroMark) {
   measure();
   window.addEventListener('resize', measure);
 
+  // cada anel (com a sua letra) gira uma volta no PRÓPRIO eixo, em tempos diferentes
+  const heroSpin = heroMark.querySelector('.hero__logo');
+  const spinParts = [];
+  if (heroSpin) {
+    // [anel, elementos que giram junto, início e fim do giro na rolagem]
+    const groups = [
+      // cada um começa quando o anterior completou 10% da própria volta
+      // a volta inteira acontece no comeco da rolagem: quando a segunda faixa comeca
+      // a subir por cima, o simbolo ja esta de frente e completo, so crescendo
+      ['.h-ring-1', ['.h-letter-g'], 0.0000, 0.3333],
+      ['.h-ring-2', ['.h-letter-a'], 0.0333, 0.3667],
+      ['.h-ring-3', ['.h-letter-p', '.h-tm'], 0.0667, 0.4000],
+    ];
+    groups.forEach(([ringSel, others, from, to]) => {
+      const ring = heroSpin.querySelector(ringSel);
+      if (!ring) return;
+      const b = ring.getBBox();
+      const cx = b.x + b.width / 2, cy = b.y + b.height / 2; // eixo: o centro do anel
+      const els = [ring, ...others.map((sel) => heroSpin.querySelector(sel)).filter(Boolean)];
+      els.forEach((el) => {
+        const e = el.getBBox(); // origem relativa ao próprio desenho (transform-box: fill-box)
+        el.style.transformOrigin = `${cx - e.x}px ${cy - e.y}px`;
+      });
+      spinParts.push({ els, from, to });
+    });
+  }
+  const flatten = (sx) => (sx >= 0 ? Math.max(sx, 0.04) : Math.min(sx, -0.04)); // nunca some por completo
+
+  const spinAll = (p) => {
+    if (!heroSpin) return;
+    heroSpin.classList.toggle('is-scrollspin', p > 0);
+    spinParts.forEach(({ els, from, to }) => {
+      const t = Math.min(1, Math.max(0, (p - from) / (to - from)));
+      const sx = flatten(Math.cos(t * Math.PI * 2));
+      els.forEach((el) => { el.style.transform = p > 0 ? `scaleX(${sx})` : ''; });
+    });
+  };
+
   const update = (scroll) => {
     const p = Math.min(1, Math.max(0, scroll / window.innerHeight)); // 0 → 1 ao longo da primeira tela
     const eased = 1 - Math.pow(1 - p, 2);
     const scale = 1 + eased * 3.2;
     heroMark.style.transform = `scale(${scale})`;
+    spinAll(p);
     // as outras informações começam a sumir quando o GAP encosta no texto e somem rápido
     const fade = Math.max(0, 1 - (scale - touchScale) / 0.45);
     heroRest.forEach((el) => { el.style.opacity = String(fade); el.style.pointerEvents = fade < 0.05 ? 'none' : ''; });

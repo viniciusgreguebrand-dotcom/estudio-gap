@@ -777,6 +777,8 @@ sup { font-size: 0.32em; vertical-align: super; font-weight: 700; }
 .hero__logo.is-settled .h-ring-2 { animation: breathe 6s ease-in-out 1s infinite; }
 .hero__logo.is-settled .h-ring-3 { animation: breathe 6s ease-in-out 2s infinite; }
 @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+/* enquanto a rolagem gira os anéis, as animações de CSS saem do caminho */
+.hero__logo.is-scrollspin .h-ring, .hero__logo.is-scrollspin .h-letter, .hero__logo.is-scrollspin .h-tm { animation: none !important; }
 @media (prefers-reduced-motion: reduce) { .hero__logo * { animation: none !important; } }
 
 /* hero: respiro inferior no lugar do antigo rodapé da faixa */
