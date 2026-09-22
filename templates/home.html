@@ -83,10 +83,6 @@
         <p class="label manifesto__eyebrow">{{ p.manifesto.eyebrow|replace('™', '<sup>™</sup>') }}</p>
         {{ tw('h2', 'manifesto__title', p.manifesto.lines) }}
         <p class="manifesto__sub">{{ p.manifesto.sub|replace('\n', '<br>') }}</p>
-        <ol class="manifesto__steps">
-          {% for s in p.metodo.steps %}<li class="manifesto__step"><span class="manifesto__step-name">{{ s.name }}</span></li>
-          {% endfor %}
-        </ol>
       </div>
     </section>
 
