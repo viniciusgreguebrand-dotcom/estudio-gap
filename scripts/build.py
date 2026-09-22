@@ -4,7 +4,7 @@
 Uso: python3 scripts/build.py
 Saída: index.html, sobre.html, metodo.html, contato.html, projetos.html, projetos/<slug>.html
 """
-import json, os, re, html as htmlmod
+import json, os, re, hashlib, html as htmlmod
 from jinja2 import Environment, FileSystemLoader
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -92,6 +92,12 @@ def main():
                 projects.append(pr)
     projects.sort(key=lambda x: (x.get('order', 999), x['title']))
 
+    # versão dos assets: força o navegador a baixar css/js novos depois de um deploy
+    h = hashlib.sha1()
+    for f in ('styles.css', 'main.js'):
+        h.update(open(os.path.join(ROOT, f), 'rb').read())
+    ver = h.hexdigest()[:8]
+
     hero_svg = open(os.path.join(ROOT, 'templates', 'partials', 'hero-logo.svg'), encoding='utf-8').read().strip()
 
     def write(name, html):
@@ -107,7 +113,7 @@ def main():
     }
     for out, (tpl, content, extra) in pages.items():
         p = load(f'content/paginas/{content}.json')
-        html = env.get_template(tpl).render(p=p, seo=p['seo'], g=g, c=c, projects=projects, rel='', hero_svg=hero_svg, **extra)
+        html = env.get_template(tpl).render(p=p, seo=p['seo'], g=g, c=c, projects=projects, rel='', hero_svg=hero_svg, ver=ver, **extra)
         write(out, html)
 
     os.makedirs(os.path.join(ROOT, 'projetos'), exist_ok=True)
@@ -115,7 +121,7 @@ def main():
     for i, pr in enumerate(projects):
         nxt = projects[(i + 1) % len(projects)]
         seo = {'title': f"{pr['title']} · Estúdio GAP", 'description': pr.get('summary') or pr['title']}
-        html = tpl.render(pr=pr, nxt=nxt, seo=seo, g=g, c=c, rel='../', active='projetos', blocks_html=render_blocks(pr.get('blocks', [])))
+        html = tpl.render(pr=pr, nxt=nxt, seo=seo, g=g, c=c, rel='../', active='projetos', ver=ver, blocks_html=render_blocks(pr.get('blocks', [])))
         write(f"projetos/{pr['slug']}.html", html)
     print(f'ok: {len(pages)} páginas + {len(projects)} projetos')
 
