@@ -80,8 +80,13 @@
     <!-- MANIFESTO (título com efeito de escrita) -->
     <section class="manifesto tw-block" id="manifesto">
       <div class="container manifesto__inner">
+        <p class="label manifesto__eyebrow">{{ p.manifesto.eyebrow|replace('™', '<sup>™</sup>') }}</p>
         {{ tw('h2', 'manifesto__title', p.manifesto.lines) }}
         <p class="manifesto__sub">{{ p.manifesto.sub|replace('\n', '<br>') }}</p>
+        <ol class="manifesto__steps">
+          {% for s in p.metodo.steps %}<li class="manifesto__step"><span class="manifesto__num">{{ '%02d' % loop.index }}.</span><span class="manifesto__step-name">{{ s.name }}</span></li>
+          {% endfor %}
+        </ol>
       </div>
     </section>
 
@@ -89,10 +94,6 @@
     <section class="method" id="metodo">
       <div class="method__stage">
         <div class="container method__grid">
-          <div class="method__head">
-            <p class="label method__eyebrow">{{ p.metodo.eyebrow|replace('™', '<sup>™</sup>') }}</p>
-            <h2 class="method__title">{{ p.metodo.title|replace('\n', '<br>') }}</h2>
-          </div>
           <div class="method__left">
             <ol class="method__steps">
               {% for s in p.metodo.steps %}<li class="method__step{% if loop.first %} is-active{% endif %}" data-step="{{ loop.index0 }}"><span class="method__num">{{ '%02d' % loop.index }}.</span><span class="method__name">{{ s.name }}</span></li>

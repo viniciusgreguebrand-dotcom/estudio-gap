@@ -39,15 +39,14 @@
     "button": "Conheça o estúdio"
   },
   "manifesto": {
+    "eyebrow": "Método GAP™ · Nosso método em 4 etapas",
     "lines": [
       "A identidade não começa no design.",
       "Começa no negócio."
     ],
-    "sub": "O Método GAP não começa desenhando. Começa investigando e criando uma estratégia.\nO design é consequência das decisões estratégicas."
+    "sub": "O Método GAP™ não começa desenhando. Começa investigando e criando uma estratégia.\nO design é consequência das decisões estratégicas."
   },
   "metodo": {
-    "eyebrow": "Método GAP™",
-    "title": "Nosso método\nem 4 etapas:",
     "steps": [
       {
         "name": "Investigação",

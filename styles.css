@@ -237,13 +237,13 @@ sup { font-size: 0.32em; vertical-align: super; font-weight: 700; }
 .method__stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
 .method__grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 0 80px; width: 100%; padding-top: 60px; }
 .method__head { grid-column: 1; grid-row: 1; }
-.method__left { grid-column: 1; grid-row: 2; }
-.method__right { grid-column: 2; grid-row: 2; align-self: start; }
+.method__left { grid-column: 1; grid-row: 1; }
+.method__right { grid-column: 2; grid-row: 1; align-self: start; }
 .method__eyebrow { margin-bottom: 22px; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 17px; }
 .method__eyebrow sup { font-size: .6em; font-weight: 400; }
 .method__title { font-size: clamp(24px, 2.2vw, 30px); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
-.method__steps { list-style: none; margin: 52px 0 0; padding: 0; border-top: 1px solid var(--pebble); }
-.method__right { padding-top: 52px; } /* alinha o topo do painel com a primeira linha do seletor */
+.method__steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--pebble); }
+.method__right { padding-top: 0; } /* alinha o topo do painel com a primeira linha do seletor */
 .method__step {
   display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: 16px;
   padding: 22px 0; border-bottom: 1px solid var(--pebble);
@@ -453,10 +453,37 @@ sup { font-size: 0.32em; vertical-align: super; font-weight: 700; }
 @keyframes blink { to { visibility: hidden; } }
 .manifesto__sub { margin: 52px auto 0; max-width: 70ch; font-size: 20px; line-height: 1.5; color: var(--ash); opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
 .manifesto.is-done .manifesto__sub { opacity: 1; transform: none; }
-@media (max-width: 860px) { .manifesto { min-height: 70vh; } .manifesto__sub { font-size: 17px; } .manifesto__sub br { display: none; } }
+.manifesto__eyebrow { margin-bottom: 26px; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 17px; color: var(--ash); }
+.manifesto__eyebrow sup { font-size: .6em; font-weight: 400; }
+.manifesto__steps {
+  list-style: none; margin: 44px 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 34px;
+}
+.manifesto__step { display: inline-flex; align-items: baseline; gap: 8px; font-size: 17px; font-weight: 500; color: var(--ink);
+  opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1); }
+.manifesto__num { font-size: 13px; font-weight: 400; color: var(--ash); }
+.manifesto.is-done .manifesto__step { opacity: 1; transform: none; }
+.manifesto.is-done .manifesto__step:nth-child(1) { transition-delay: .45s; }
+.manifesto.is-done .manifesto__step:nth-child(2) { transition-delay: .70s; }
+.manifesto.is-done .manifesto__step:nth-child(3) { transition-delay: .95s; }
+.manifesto.is-done .manifesto__step:nth-child(4) { transition-delay: 1.20s; }
+@media (prefers-reduced-motion: reduce) { .manifesto__step { opacity: 1; transform: none; } }
+
+/* capas dos projetos: o quadro inteiro cresce para a direita ao entrar na tela */
+.showcase__item .reveal-x { opacity: 0; transform: scale(0); transform-origin: left top;
+  transition: transform .8s cubic-bezier(.22,1,.36,1), opacity .4s ease; will-change: transform, opacity; }
+.showcase__item .reveal-x.is-shown { opacity: 1; transform: scale(1); }
+.showcase__item .reveal-x img.slide { opacity: 0; transform: none; transition: none; }
+.showcase__item .reveal-x img.slide.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .showcase__item .reveal-x { opacity: 1; transform: none; } }
+
+@media (max-width: 860px) { .manifesto { min-height: 70vh; } .manifesto__steps { gap: 10px 20px; font-size: 15px; } .manifesto__sub { font-size: 17px; } .manifesto__sub br { display: none; } }
 
 
 /* ===== Segunda faixa: posicionamento alinhado à direita ===== */
+/* respiro menor entre a faixa de posicionamento e os cases */
+#gap { padding-bottom: calc(var(--section) * 0.6); }
+.portfolio { padding-top: calc(var(--section) * 0.6); }
 .gap-intro { display: flex; justify-content: flex-start; }
 .gap-intro__text { text-align: left; max-width: 100%; white-space: pre-wrap; position: relative; display: inline-block; }
 .gap-intro .typewriter__typed { white-space: pre-wrap; text-align: left; color: var(--ink); }
