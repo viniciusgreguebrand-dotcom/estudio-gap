@@ -458,8 +458,8 @@ sup { font-size: 0.32em; vertical-align: super; font-weight: 700; }
 
 /* ===== Segunda faixa: posicionamento alinhado à direita ===== */
 .gap-intro { display: flex; justify-content: flex-start; }
-.gap-intro__text { text-align: left; max-width: none; white-space: nowrap; position: relative; display: inline-block; }
-.gap-intro .typewriter__typed { white-space: pre; text-align: left; color: var(--ink); }
+.gap-intro__text { text-align: left; max-width: 100%; white-space: pre-wrap; position: relative; display: inline-block; }
+.gap-intro .typewriter__typed { white-space: pre-wrap; text-align: left; color: var(--ink); }
 .gap-intro .typewriter__cursor { background: var(--ink); }
 @media (max-width: 860px) { .gap-intro__text { white-space: normal; } .gap-intro__text br { display: none; } }
 

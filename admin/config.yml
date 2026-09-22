@@ -129,7 +129,7 @@ collections:
             name: intro
             widget: object
             fields:
-              - { label: "Linhas do texto", name: lines, widget: list, hint: "Cada item é uma linha (quebra fixa no desktop)." }
+              - { label: "Linhas do texto", name: lines, widget: list, hint: "Uma linha por item: o site quebra a linha a cada item da lista (vírgula não quebra). Use linhas de tamanho parecido, até ~40 caracteres." }
           - label: "3. Cases em destaque"
             name: cases
             widget: object
