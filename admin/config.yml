@@ -226,6 +226,9 @@ collections:
               - { label: Eyebrow, name: eyebrow, widget: string }
               - { label: Título, name: title, widget: text }
               - { label: Lead, name: lead, widget: text }
+              - { label: "Vídeo de abertura", name: video, widget: file, required: false, hint: "MP4 em loop. Se houver vídeo, ele substitui a foto." }
+              - { label: "Foto de abertura", name: image, widget: image, required: false, hint: "Faixa larga (ideal 2000x700). Vira a capa do vídeo." }
+              - { label: "Título abaixo da foto", name: title_pos, widget: string, required: false }
           - label: "2. Pilares"
             name: pilares
             widget: list

@@ -17,6 +17,17 @@
           </div>
         </div>
       </div>
+      {% if p.hero.video or p.hero.image %}
+      <figure class="mt-hero__media reveal-x">
+        {% if p.hero.video %}<span class="reveal-x__box"><video src="{{ p.hero.video }}" {% if p.hero.image %}poster="{{ p.hero.image }}" {% endif %}autoplay muted loop playsinline aria-label="{{ p.hero.title|replace('\n', ' ') }}"></video></span>
+        {% else %}<img src="{{ p.hero.image }}" alt="{{ p.hero.title|replace('\n', ' ') }}" />{% endif %}
+      </figure>
+      {% endif %}
+      {% if p.hero.title_pos %}
+      <div class="container">
+        <h2 class="h-xl mt-hero__title mt-hero__title--after">{{ p.hero.title_pos|replace('™', '<sup>™</sup>') }}</h2>
+      </div>
+      {% endif %}
     </section>
 
     <!-- 4 PILARES (acordeão) -->
@@ -40,11 +51,17 @@
           {% endfor %}
         </ol>
         <p class="mt-list__count">01 / {{ '%02d' % p.pilares|length }}</p>
+        <a href="#processo" class="mt-scroll" aria-label="Continuar para o processo">
+          <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" />
+            <path d="M15 21l9 9 9-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
       </div>
     </section>
 
     <!-- PROCESSO -->
-    <section class="band band--dark fade-dark mt-process">
+    <section class="band band--dark fade-dark mt-process" id="processo">
       <div class="container">
         <p class="label label--light">{{ p.processo.eyebrow }}</p>
         <h2 class="h-lg mt-process__title">{{ p.processo.title }}</h2>

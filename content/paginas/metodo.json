@@ -6,7 +6,10 @@
  "hero": {
   "eyebrow": "Método GAP™",
   "title": "Estratégia antes\nda estética.",
-  "lead": "Uma marca forte precisa nascer de uma compreensão forte do negócio. Por isso o GAP não começa desenhando. Começa investigando."
+  "lead": "Uma marca forte precisa nascer de uma compreensão forte do negócio. Por isso o GAP não começa desenhando. Começa investigando.",
+  "video": "assets/metodo-hero.mp4",
+  "image": "",
+  "title_pos": "Nosso método™ em 4 etapas:"
  },
  "pilares": [
   {
